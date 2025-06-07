@@ -3,30 +3,67 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function GamePage({ gameState, setGameState }) {
-  const router = useRouter();
-
-  const [page, setPage] = useState("start");
-  const [score, setScore] = useState(0);
-  const [step, setStep] = useState(0);
-
-
-  const handleJump = () => {
-    setStep((prev) => prev + 1);
-    setScore((prev) => prev + 10);
-  };
+export default function GamePage({ gameState, setGameState, step, setStep, score, setScore }) {
+  
 
   const handleEnd = () => {
     // 結束遊戲後，帶分數與步數跳轉到結果頁
     setGameState("result");
   };
 
-  
+
+  const [lastClickNumber, setLastClickNumber] = useState(0);
+
+  const handleJump = (currentNumber) => {
+    
+    console.log(lastClickNumber, currentNumber);
+
+    if (lastClickNumber+1 == currentNumber) {
+      //跳格子成功
+      console.log("跳格子成功");
+      setLastClickNumber(currentNumber);
+    } else {
+      //跳格子失敗
+      console.log("跳格子失敗");
+    }
+  }
+
 
   
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-300">
       <h2 className="text-3xl font-bold mb-4">遊戲中</h2>
+
+      {/* 跳跳區 */}
+
+      {lastClickNumber}
+
+
+      <div className="flex gap-3">
+        <div className={`
+          w-[48px] h-[48px] flex items-center justify-center border border-white
+            ${lastClickNumber >= 1 ? "opacity-20" : ""}
+        `} onClick={() => handleJump(1)}>
+          1
+        </div>
+
+        <div className={`
+          w-[48px] h-[48px] flex items-center justify-center border border-white
+            ${lastClickNumber >= 2 ? "opacity-20" : ""}
+        `} onClick={() => handleJump(2)}>
+          2
+        </div>
+
+        <div className={`
+          w-[48px] h-[48px] flex items-center justify-center border border-white
+            ${lastClickNumber >= 3 ? "opacity-20" : ""}
+        `} onClick={() => handleJump(3)}>
+          3
+        </div>
+      </div>
+
+
+
       <p className="mb-2">你已經跳了 {step} 步</p>
       <p className="mb-6">目前分數：{score}</p>
       <div className="flex gap-4">

@@ -10,16 +10,20 @@ import ResultPage from "@/components/page/ResultPage";
 export default function Home() {
   // redirect("/start");
 
-  const [gameState, setGameState] = useState("start");
   //start, gaming, result
+  const [gameState, setGameState] = useState("start");
+
+  
+  const [step, setStep] = useState(0);
+  const [score, setScore] = useState(0);
 
 
   
   return (
     <div>
       {gameState === "start" && <StartPage gameState={gameState} setGameState={setGameState}/>}
-      {gameState === "gaming" && <GamePage gameState={gameState} setGameState={setGameState}/>}
-      {gameState === "result" && <ResultPage gameState={gameState} setGameState={setGameState}/>}
+      {gameState === "gaming" && <GamePage gameState={gameState} setGameState={setGameState} step={step} setStep={setStep} score={score} setScore={setScore}/>}
+      {gameState === "result" && <ResultPage gameState={gameState} setGameState={setGameState} step={step} setStep={setStep} score={score} setScore={setScore}/>}
     </div>
   );
 }

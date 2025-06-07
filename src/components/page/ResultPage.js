@@ -2,12 +2,8 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function ResultPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const score = searchParams.get("score") || 0;
-  const steps = searchParams.get("steps") || 0;
+export default function ResultPage({ gameState, setGameState, step, setStep, score, setScore }) {
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#f7f6f2] p-6">
@@ -18,13 +14,13 @@ export default function ResultPage() {
 
         <div className="flex gap-4 justify-center">
           <button
-            onClick={() => router.push("/play")}
+            onClick={() => setGameState("gaming")}
             className="bg-[#55B4B0] px-6 py-3 rounded-lg text-white hover:bg-[#489D9A]"
           >
             再玩一次
           </button>
           <button
-            onClick={() => router.push("/")}
+            onClick={() => setGameState("start")}
             className="bg-[#BC243C] px-6 py-3 rounded-lg text-white hover:bg-[#A3213A]"
           >
             回首頁
