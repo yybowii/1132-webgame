@@ -4,8 +4,8 @@ import Image from "next/image";
 import { PlayCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function StartPage() {
-  const router = useRouter();
+export default function StartPage({ gameState, setGameState }) {
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-[#f7f6f2]">
@@ -42,7 +42,9 @@ export default function StartPage() {
 
         <div className="flex justify-center pt-8 pb-8">
           <button
-            onClick={() => router.push("/play")}
+            onClick={ () => {
+              setGameState("gaming");
+            } }
             className="rounded-full text-lg px-10 py-3 clay-inset bg-[#BC243C] hover:bg-[#BC243C]/90 text-white border-2 border-white flex items-center"
           >
             <PlayCircle size={24} className="mr-2" />
