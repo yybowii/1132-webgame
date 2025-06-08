@@ -2,11 +2,8 @@
 
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export default function StartPage({ gameState, setGameState }) {
-  
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-[#f7f6f2]">
       <div className="w-full max-w-2xl bg-[#f7f6f2] shadow-xl rounded-2xl border-2 border-[#7FCDCD] overflow-hidden">
@@ -33,8 +30,8 @@ export default function StartPage({ gameState, setGameState }) {
             <h3 className="text-xl font-semibold mb-3 text-left text-[#E15D44]">遊戲介紹</h3>
             <p className="text-sm leading-relaxed text-left text-[#7FCDCD]">
               歡迎來到 跳格子 !<br />
-              依照指定的順序點擊或滑動畫面來跳格子<br /><br />
-              點錯格子就需要重來，並且隨著遊戲進行速度會越來越快<br /><br />
+              請依照數字的順序依序點擊來跳格子<br /><br />
+              要按照數字順序點擊才會成功，點錯格子會倒扣分<br /><br />
               最終在時間內完成越多越高分
             </p>
           </div>
@@ -42,9 +39,9 @@ export default function StartPage({ gameState, setGameState }) {
 
         <div className="flex justify-center pt-8 pb-8">
           <button
-            onClick={ () => {
+            onClick={() => {
               setGameState("gaming");
-            } }
+            }}
             className="rounded-full text-lg px-10 py-3 clay-inset bg-[#BC243C] hover:bg-[#BC243C]/90 text-white border-2 border-white flex items-center"
           >
             <PlayCircle size={24} className="mr-2" />
